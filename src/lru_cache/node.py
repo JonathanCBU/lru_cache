@@ -112,4 +112,5 @@ class Node(Generic[T]):
         """Delete this node and it's data."""
         self._data = None
         self._next = None
+        self._prev = None
         self._data_type = type(None)
