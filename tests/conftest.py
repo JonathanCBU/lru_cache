@@ -2,10 +2,11 @@
 
 import pytest
 
+from lru_cache import Node
+
 
 @pytest.fixture
 def template_nodes() -> list[dict[str, int]]:
-    """Template data for node creation."""
     return [
         {
             "id_num": n,
@@ -13,3 +14,8 @@ def template_nodes() -> list[dict[str, int]]:
         }
         for n in range(5)
     ]
+
+
+@pytest.fixture
+def unlinked_nodes(template_nodes: list[dict[str, int]]) -> list[Node]:
+    return [Node(**node) for node in template_nodes]

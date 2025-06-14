@@ -25,12 +25,14 @@ class Node(Generic[T]):
         id_num: int,
         data: T,
         next_node: "Node[T] | None" = None,
+        prev_node: "Node[T] | None" = None,
     ) -> None:
         """Initialize node object with immutable data type."""
         self._id = id_num
         self._data = data
         self._data_type = type(data)
         self._next = next_node
+        self._prev = prev_node
 
     @property
     def id(self) -> int:
@@ -60,6 +62,30 @@ class Node(Generic[T]):
             raise NodeSelfLinkError(message="Node cannot link to itself")
 
         self._next = value
+
+    @property
+    def prev(self) -> "Node[T] | None":
+        """Get the prev node node in the list."""
+        return self._prev
+
+    @prev.setter
+    def prev(self, value: "Node[T] | None") -> None:
+        """Set the prev node in the list.
+
+        Args:
+            value: The prev node, or None to start the list
+        Raises:
+            TypeError: If input is not None or Node type
+            ValueError: if input is this Node instance
+        """
+        if value is not None and not isinstance(value, Node):
+            raise InvalidNodeLinkError(
+                message=f"Prev node must be a Node instance or None, got {type(value)}",
+            )
+        if value == self:
+            raise NodeSelfLinkError(message="Node cannot link to itself")
+
+        self._prev = value
 
     @property
     def data(self) -> T:

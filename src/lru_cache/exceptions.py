@@ -31,7 +31,8 @@ class CacheErrorCode(IntEnum):
 
     # Cache Operation Errors (3000-3999)
     CACHE_KEY_NOT_FOUND = 3001
-    CACHE_EVICTION_FAILED = 3008
+    CACHE_EVICTION_FAILED = 3002
+    CACHE_LOOKUP_FAILED = 3003
 
     @classmethod
     def get_category(cls, code: int) -> str:
@@ -63,6 +64,7 @@ ERROR_CODE_MESSAGES = {
     # Cache operation errors
     CacheErrorCode.CACHE_KEY_NOT_FOUND: "Cache key not found",
     CacheErrorCode.CACHE_EVICTION_FAILED: "Failed to evict cache entry",
+    CacheErrorCode.CACHE_LOOKUP_FAILED: "Failed to find node in cache.",
 }
 
 
@@ -119,4 +121,32 @@ class NodeSelfLinkError(NodeError):
         code: int = CacheErrorCode.NODE_SELF_LINK,
     ) -> None:
         """Log self reference error."""
+        super().__init__(message, code)
+
+
+class CacheError(GenericError):
+    """Base class for cache errors."""
+
+
+class CacheNodeNotFoundError(CacheError):
+    """Raised when node not found in cache."""
+
+    def __init__(
+        self,
+        message: str = ERROR_CODE_MESSAGES[CacheErrorCode.CACHE_LOOKUP_FAILED],
+        code: int = CacheErrorCode.CACHE_LOOKUP_FAILED,
+    ) -> None:
+        """Log cache not found."""
+        super().__init__(message, code)
+
+
+class CacheLookupError(CacheError):
+    """Raised when cache lookup key invalid."""
+
+    def __init__(
+        self,
+        message: str = ERROR_CODE_MESSAGES[CacheErrorCode.CACHE_LOOKUP_FAILED],
+        code: int = CacheErrorCode.CACHE_LOOKUP_FAILED,
+    ) -> None:
+        """Log lookup failure."""
         super().__init__(message, code)
