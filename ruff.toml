@@ -38,15 +38,6 @@ ignore = []
 # Allow auto-fixing for all enabled rules
 fixable = ["ALL"]
 
-# Never auto-fix these rules
-unfixable = [
-    "F401", # Unused imports (let developer decide)
-    "F841", # Unused variables (let developer decide)
-]
-
-# Allow unused variables when they start with underscore
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
-
 [lint.per-file-ignores]
 # Test files can have additional ignored rules
 "tests/**/*.py" = [
@@ -83,6 +74,3 @@ max-args = 5
 max-branches = 12
 max-returns = 6
 max-statements = 50
-
-[format]
-# Formatter settings
