@@ -2,6 +2,14 @@
 
 A least recently used cache implemented in Python with constant time lookups.
 
+## Intro
+
+This project was a technical question I received at one point during the job search and I wanted to turn it into an understandable Python library with CI.
+
+## Installation
+
+Install this library by checking it out directly and using PDM, or download the wheel artifact from the most recent build action.
+
 ## Release Process
 
 1. Create the release branch
