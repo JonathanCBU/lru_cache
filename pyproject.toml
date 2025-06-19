@@ -1,6 +1,6 @@
 [project]
 name = "lru_cache"
-version = "0.1.0"
+version = "1.0.0"
 description = "LRU cache logic so Jonathan always remembers"
 authors = [{ name = "Jonathan Cook", email = "jcookbme@gmail.com" }]
 dependencies = []
