@@ -56,3 +56,4 @@ def test_exceptions(template_nodes: list[dict[str, int]]) -> None:
         == "Next node must be a Node instance or None, got <class 'str'>"
     )
     assert next_value_error.value.message == "Node cannot link to itself"
+    assert str(2) == 2
