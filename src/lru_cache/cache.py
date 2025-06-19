@@ -7,7 +7,7 @@ from lru_cache.node import Node
 class Cache:
     """Base cache class."""
 
-    def __init__(self, max_size: int = 3) -> None:
+    def __init__(self, max_size: int = 3):
         """Initialize empty cache."""
         self.max_size: int = max_size
         self.__map: dict[int, Node] = {}
