@@ -13,14 +13,20 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 
+
 [tool.pdm]
 distribution = true
-
-[dependency-groups]
-test = ["ruff>=0.11.13", "pytest>=8.4.0", "ipython>=9.3.0", "nox>=2025.5.1"]
 
 [tool.pdm.scripts]
 test = "nox -s tests"
 lint = "nox -s lint"
 format = "nox -s style"
 ci = "nox"
+[dependency-groups]
+test = [
+    "ruff>=0.11.13",
+    "pytest>=8.4.0",
+    "ipython>=9.3.0",
+    "nox>=2025.5.1",
+]
+
