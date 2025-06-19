@@ -1,0 +1,76 @@
+target-version = "py313"
+src = ["src", "tests"]
+line-length = 88
+fix = true
+show-fixes = true
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "*.pyi",
+]
+
+[lint]
+# Enable rule categories
+select = ["ALL"]
+
+# Disable specific rules that might be too strict
+ignore = []
+
+# Allow auto-fixing for all enabled rules
+fixable = ["ALL"]
+
+[lint.per-file-ignores]
+# Test files can have additional ignored rules
+"tests/**/*.py" = [
+    "S101",    # Allow assert in tests
+    "PLR2004", # Allow magic values in tests
+    "ANN201",  # Missing return type annotation
+    "D103",    # Missing docstring in public function
+]
+
+# __init__.py files
+"__init__.py" = [
+    "F401", # Allow unused imports in __init__.py
+    "D104", # Missing docstring in public package
+]
+
+[lint.isort]
+# Import sorting configuration
+case-sensitive = true
+combine-as-imports = true
+force-single-line = false
+force-wrap-aliases = true
+known-first-party = ["cache_lib"]
+lines-between-types = 1
+order-by-type = true
+single-line-exclusions = ["typing"]
+
+[lint.pydocstyle]
+# Docstring conventions
+convention = "google" # Use Google-style docstrings
+
+[lint.pylint]
+# Pylint-specific settings
+max-args = 5
+max-branches = 12
+max-returns = 6
+max-statements = 50
